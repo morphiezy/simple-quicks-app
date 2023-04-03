@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  html {
+    font-family: 'Lato', sans-serif;
+  }
+
+  @keyframes floatOpen {
+    from {
+      margin-left: 0;
+      margin-right: -26px;
+    }
+    to {
+      margin-left: 26px;
+    }
+  }
+
+  .float-open{
+    animation: floatOpen 0.3s;
+  }
+
+}
