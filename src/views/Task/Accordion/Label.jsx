@@ -12,6 +12,9 @@ const Label = ({ expand, expandBody, data, updateTask, deleteClick }) => {
     updateTask(data.id, "title", value)
   }
 
+  const daysLeft = date.task.dayLeft(data.deadline);
+  const deadline = date.task.deadline(data.deadline);
+
   return (
     <div className="flex items-start justify-between">
       <div className="flex items-start">
@@ -37,10 +40,10 @@ const Label = ({ expand, expandBody, data, updateTask, deleteClick }) => {
       </div>
       <div className="flex items-center text-xs">
         <span className="text-[#EB5757] mr-3">
-          { date.task.dayLeft(data.deadline) }
+          { !!daysLeft ? daysLeft : "" }
         </span>
         <span className="text-[#4F4F4F] mr-3">
-          { date.task.deadline(data.deadline)}
+          { !!deadline ? deadline : "" }
         </span>
         <button
           className={`w-fit h-fit mr-3 ${

@@ -38,18 +38,23 @@ const date = {
   },
   task: {
     deadline: (time) => {
-      
       const date = new Date(time);
       const day = date.getDate().toString().padStart(2, "0");
       const month = (date.getMonth() + 1).toString().padStart(2, "0");
       const year = date.getFullYear().toString();
+
+      if ([day, month, year].some((i) => isNaN(i))) return null;
+
       return `${day}/${month}/${year}`;
     },
     dayLeft: (time) => {
+
       const deadline = new Date(time);
       const today = new Date();
       const timeDiff = deadline.getTime() - today.getTime();
       const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  
+      if (isNaN(daysLeft)) return null;
 
       return `${daysLeft} Days Left`;
     },

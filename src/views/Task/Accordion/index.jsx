@@ -3,6 +3,7 @@ import Label from "./Label";
 import Body from "./Body";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { useEffect } from "react";
 
 const Accordion = ({ taskData, updateTask, deleteTask }) => {
 
@@ -25,6 +26,10 @@ const Accordion = ({ taskData, updateTask, deleteTask }) => {
     setCalenderOpen(false);
     updateTask(taskData.id, "deadline", value);
   };
+
+  useEffect(()=>{
+    setCalendar(taskData.deadline)
+  },[taskData])
 
   const calenderStyle = isCalendarOpen
     ? "opacity-1 visible left-[190px]"
