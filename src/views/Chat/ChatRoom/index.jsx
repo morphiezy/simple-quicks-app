@@ -6,7 +6,7 @@ import Close from "../../../assets/icons/close_24px.svg";
 
 import MessageCard from "./MessageCard";
 import ChatInput from "../ChatInput";
-import LoadingCS from "./LoadingCS";
+import ToastLoading from "./ToastLoading";
 
 
 const ChatRoom = ({ chats, readMsg, editMsg, delMsg }) => {
@@ -166,7 +166,7 @@ const ChatRoom = ({ chats, readMsg, editMsg, delMsg }) => {
           })
         }
       </div>
-      { state.data.type === "chat" ? <LoadingCS/> : false }
+      { state.data.type === "chat" ? <ToastLoading/> : false }
       <ChatInput editData={editData} setEdit={setEdit} updateMsg={editMsg} sendMessage={readMsg} />
     </>
   );

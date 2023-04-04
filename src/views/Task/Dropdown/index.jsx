@@ -1,15 +1,13 @@
 import React from "react";
 import ExpandIcon from "../../../assets/icons/expand_more_24px.svg";
 
-
 const dropdownLists = [
-  { id: 1, text: "All" },
-  { id: 2, text: "Complete Tasks" },
-  { id: 3, text: "Uncomplete Task" },
+  { id: 1, text: "All", value: "all" },
+  { id: 2, text: "Complete Tasks", value: true },
+  { id: 3, text: "Uncomplete Task", value: false },
 ];
 
-
-const Dropdown = () => {
+const Dropdown = ({ updateList }) => {
   const [open, setOpen] = React.useState(false);
   const [selected, setSelected] = React.useState(dropdownLists[0].text);
 
@@ -17,8 +15,9 @@ const Dropdown = () => {
     setOpen(!open);
   };
 
-  const itemDropDownClick = (text) => {
+  const itemDropDownClick = (text, value) => {
     setSelected(text);
+    updateList(value);
   };
 
   const dropdownItemStyle = open
@@ -26,10 +25,8 @@ const Dropdown = () => {
     : "opacity-0 invisible top-10";
 
   return (
-    <div className="relative" onClick={dropdownClick}>
-      <div
-        className="flex justify-between w-[120px] h-[40px] py-[10px] px-[14px] ml-12 border border-[#828282] rounded-[5px] cursor-pointer"
-      >
+    <div className="relative z-50" onClick={dropdownClick}>
+      <div className="flex justify-between w-[120px] h-[40px] py-[10px] px-[14px] ml-12 border border-[#828282] rounded-[5px] cursor-pointer">
         <p className="text-sm font-bold max-w-[80px] line-clamp-1">
           {selected}
         </p>
@@ -46,7 +43,7 @@ const Dropdown = () => {
       <ul
         className={`overflow-hidden absolute w-[220px] h-fit bg-white border border-[#828282] rounded-[5px] transition-all duration-300 ${dropdownItemStyle}`}
       >
-        {dropdownLists.map(({ id, text }) => {
+        {dropdownLists.map(({ id, text, value }) => {
           return (
             <li
               key={id}
@@ -54,7 +51,7 @@ const Dropdown = () => {
             >
               <button
                 className="block w-full h-full p-3 text-left font-bold text-sm hover:bg-zinc-100"
-                onClick={()=> itemDropDownClick(text)}
+                onClick={() => itemDropDownClick(text, value)}
               >
                 {text}
               </button>

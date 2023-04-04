@@ -1,7 +1,7 @@
 import React from "react";
 import BlueSpinner from "../../../assets/icons/blue-spinnner.svg";
 
-const LoadingCS = () => {
+const ToastLoading = () => {
   const [visible, setVisible] = React.useState(true);
 
   React.useEffect(() => {
@@ -26,4 +26,4 @@ const LoadingCS = () => {
   );
 };
 
-export default LoadingCS;
+export default ToastLoading;
