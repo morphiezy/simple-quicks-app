@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 const Accordion = ({ taskData, updateTask, deleteTask }) => {
 
-  const [calendar, setCalendar] = useState(taskData.deadline);
+  const [calendar, setCalendar] = useState();
   const [isAccordionExpand, setAccordionExpand] = useState(false);
   const [isCalendarOpen, setCalenderOpen] = useState(false);
 
@@ -28,7 +28,8 @@ const Accordion = ({ taskData, updateTask, deleteTask }) => {
   };
 
   useEffect(()=>{
-    setCalendar(taskData.deadline)
+    const validDate = !isNaN(new Date(taskData.deadline)) ? taskData.deadline : new Date();
+    setCalendar(validDate)
   },[taskData])
 
   const calenderStyle = isCalendarOpen
