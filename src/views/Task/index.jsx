@@ -44,6 +44,23 @@ const Task = () => {
     setFilterTask(filteredData);
   };
 
+  const addNewTask = () => {
+    const newTask = JSON.parse(JSON.stringify(tasks));
+    const random = Math.floor(Math.random() * 100) + 1;
+    
+    const data = {
+      id: `task-${random}`,
+      title: '',
+      description:"",
+      deadline: null,
+      completed: false,
+    }
+
+    newTask.push(data);
+
+    setTasks(newTask);
+  }
+
   useEffect(() => {
     fetchingTasks();
   }, []);
@@ -52,7 +69,7 @@ const Task = () => {
     <>
       <div className="w-full h-auto flex justify-between items-center py-6 px-8">
         <Dropdown updateList={handleFilter} />
-        <Button type="button" value="New Task" />
+        <Button type="button" value="New Task" click={addNewTask}/>
       </div>
       {loading ? (
         <Loading text="Tasks" />

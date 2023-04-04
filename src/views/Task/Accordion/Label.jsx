@@ -26,20 +26,21 @@ const Label = ({ expand, expandBody, data, updateTask, deleteClick }) => {
         </div>
         <div className="w-[300px]">
           <textarea
-            className={`resize-none block w-full text-[#4F4F4F] text-sm font-bold ${
-              data.completed ? "line-through" : null
+            className={`resize-none block w-full text-sm font-bold ${
+              data.completed ? "line-through text-[#828282]" : "text-[#4F4F4F]"
             }`}
             value={data.title}
+            placeholder="Type task title"
             onChange={(e) => handleTitleChange(e.target.value)}
           ></textarea>
         </div>
       </div>
       <div className="flex items-center text-xs">
         <span className="text-[#EB5757] mr-3">
-          {date.task.dayLeft(data.deadline)}
+          { date.task.dayLeft(data.deadline) }
         </span>
         <span className="text-[#4F4F4F] mr-3">
-          {date.task.deadline(data.deadline)}
+          { date.task.deadline(data.deadline)}
         </span>
         <button
           className={`w-fit h-fit mr-3 ${
